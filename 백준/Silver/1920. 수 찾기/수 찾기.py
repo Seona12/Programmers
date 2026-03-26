@@ -1,13 +1,29 @@
 import sys
+input = sys.stdin.readline
 
-N = int(sys.stdin.readline())
-list_one = set(map(int, sys.stdin.readline().split()))
+N = int(input())
+A = list(map(int,input().split()))
+A.sort() #이진 탐색은 정렬 먼저 필수!!
+M = int(input())
+target_list = list(map(int,input().split()))
 
-M = int(sys.stdin.readline())
-list_two = list(map(int, sys.stdin.readline().split()))
 
-for x in list_two:
-    if x in list_one:  # 리스트 A에서 x가 존재하는지 확인
+for i in range(M):
+    find = False
+    start = 0
+    end = len(A)-1
+    target = target_list[i]
+    while start <= end:
+        mid = int((start + end) // 2)
+        midv = A[mid]
+        if midv > target:
+            end = mid-1
+        elif midv < target:
+            start = mid + 1
+        else:
+            find = True
+            break
+    if find:
         print(1)
     else:
         print(0)
