@@ -1,0 +1,15 @@
+import sys
+input = sys.stdin.readline
+
+N,K = map(int,input().split())
+A = [0] * N
+
+for i in range(N):
+    A[i] = int(input())
+
+count = 0
+
+for i in range(N-1, -1, -1): #거꾸로 반복
+    count += int(K/A[i])
+    K = int(K % A[i])
+print(count)
